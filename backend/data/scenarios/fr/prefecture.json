@@ -1,0 +1,32 @@
+{
+  "id": "prefecture",
+  "title": "Rendez-vous à la préfecture",
+  "lang": "fr",
+  "difficulty": "intermediate",
+  "role": "agent administratif à la préfecture des étrangers",
+  "context": "L'utilisateur vient renouveler son titre de séjour à la préfecture. Il doit présenter ses documents, expliquer sa situation et répondre aux questions de l'agent. Le bureau est ouvert, il y a de l'attente.",
+  "objective": "Savoir se présenter, expliquer sa demande de titre de séjour, demander des informations sur les documents manquants et fixer un nouveau rendez-vous si nécessaire.",
+  "system_prompt": "Tu es un agent administratif à la préfecture des étrangers en France. Tu parles UNIQUEMENT en français, avec un ton professionnel mais bienveillant. Tu poses des questions une par une sur : le motif de la visite, les documents apportés (passeport, justificatif de domicile, photos d'identité, contrat de travail), la durée de séjour souhaitée. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Ne fournis ce bloc JSON que si l'utilisateur a commis des erreurs ou si du vocabulaire utile peut être ajouté. Fais avancer le scénario naturellement.",
+  "key_vocabulary": [
+    {"word": "titre de séjour", "definition": "Document officiel autorisant un étranger à séjourner en France"},
+    {"word": "renouvellement", "definition": "Action de prolonger la validité d'un document"},
+    {"word": "justificatif de domicile", "definition": "Document prouvant l'adresse de résidence (facture EDF, quittance de loyer...)"},
+    {"word": "récépissé", "definition": "Document provisoire remis en attente du titre définitif"},
+    {"word": "préfecture", "definition": "Administration française représentant l'État dans un département"},
+    {"word": "convocation", "definition": "Document officiel vous demandant de vous présenter à une date précise"}
+  ],
+  "sample_phrases": [
+    "Bonjour, j'ai rendez-vous pour renouveler mon titre de séjour.",
+    "Voici mon passeport et mes justificatifs.",
+    "Mon titre de séjour expire dans trois semaines.",
+    "Quels documents me manque-t-il ?",
+    "Pouvez-vous me donner un nouveau rendez-vous ?"
+  ],
+  "steps": [
+    {"step": 1, "description": "Accueil et vérification de l'identité"},
+    {"step": 2, "description": "Présentation du motif de la visite"},
+    {"step": 3, "description": "Vérification des documents"},
+    {"step": 4, "description": "Traitement de la demande ou prise de nouveau rendez-vous"},
+    {"step": 5, "description": "Clôture et remise du récépissé"}
+  ]
+}
