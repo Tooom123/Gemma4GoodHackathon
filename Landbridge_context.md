@@ -70,7 +70,7 @@ Le fine-tune QLoRA cible les dialogues administratifs dans 4 langues : **frança
 ### Stack complète
 
 ```
-Frontend         React 18 + Vite + TypeScript
+Frontend         React 18 + Vite + TypeScript (we'll probably call Claude Design)
                  PWA (Workbox service worker, cache offline complet)
                  TailwindCSS
 
