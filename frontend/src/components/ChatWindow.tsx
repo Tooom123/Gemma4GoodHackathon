@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useOllama, type Message } from "../hooks/useOllama";
+import { VoiceButton } from "./VoiceButton";
+import { FeedbackPanel } from "./FeedbackPanel";
+import { extractPedagogy, hasFeedback, type PedagogyBlock } from "../utils/pedagogy";
 
 interface Props {
   systemPrompt: string;
@@ -7,10 +10,16 @@ interface Props {
   model?: string;
 }
 
-function MessageBubble({ msg }: { msg: Message }) {
+interface DisplayMessage {
+  role: "user" | "assistant";
+  text: string;
+  pedagogy?: PedagogyBlock | null;
+}
+
+function MessageBubble({ msg }: { msg: DisplayMessage }) {
   const isUser = msg.role === "user";
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-3`}>
+    <div className={`flex flex-col ${isUser ? "items-end" : "items-start"} mb-3`}>
       <div
         className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
           isUser
@@ -18,10 +27,33 @@ function MessageBubble({ msg }: { msg: Message }) {
             : "bg-gray-100 text-gray-900 rounded-bl-sm"
         }`}
       >
-        {msg.content || <span className="opacity-50 italic">...</span>}
+        {msg.text || <span className="opacity-50 italic">…</span>}
       </div>
+      {!isUser && msg.pedagogy && hasFeedback(msg.pedagogy) && (
+        <div className="w-full max-w-[75%] mt-1">
+          <FeedbackPanel pedagogy={msg.pedagogy} />
+        </div>
+      )}
     </div>
   );
+}
+
+/** Extract pedagogy from completed assistant messages, leave streaming ones untouched. */
+function toDisplayMessages(
+  messages: Message[],
+  isStreaming: boolean
+): DisplayMessage[] {
+  return messages
+    .filter((m) => m.role !== "system")
+    .map((m, i, arr) => {
+      const isLastAssistant =
+        m.role === "assistant" && i === arr.length - 1 && isStreaming;
+      if (m.role === "assistant" && !isLastAssistant) {
+        const { cleanText, pedagogy } = extractPedagogy(m.content);
+        return { role: "assistant", text: cleanText, pedagogy };
+      }
+      return { role: m.role as "user" | "assistant", text: m.content };
+    });
 }
 
 export function ChatWindow({ systemPrompt, scenarioTitle, model }: Props) {
@@ -51,7 +83,12 @@ export function ChatWindow({ systemPrompt, scenarioTitle, model }: Props) {
     }
   };
 
-  const visibleMessages = messages.filter((m) => m.role !== "system");
+  const handleTranscript = (text: string) => {
+    setInput((prev) => (prev ? prev + " " + text : text));
+    textareaRef.current?.focus();
+  };
+
+  const displayMessages = toDisplayMessages(messages, isStreaming);
 
   return (
     <div className="flex flex-col h-full bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -71,12 +108,12 @@ export function ChatWindow({ systemPrompt, scenarioTitle, model }: Props) {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        {visibleMessages.length === 0 && (
+        {displayMessages.length === 0 && (
           <p className="text-center text-gray-400 text-sm mt-10">
             Commencez la conversation — dites bonjour !
           </p>
         )}
-        {visibleMessages.map((msg, i) => (
+        {displayMessages.map((msg, i) => (
           <MessageBubble key={i} msg={msg} />
         ))}
         {error && (
@@ -87,13 +124,14 @@ export function ChatWindow({ systemPrompt, scenarioTitle, model }: Props) {
 
       {/* Input */}
       <div className="px-4 py-3 border-t border-gray-200 flex gap-2 items-end">
+        <VoiceButton onTranscript={handleTranscript} disabled={isStreaming} />
         <textarea
           ref={textareaRef}
           rows={1}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Écrivez votre réponse… (Entrée pour envoyer)"
+          placeholder="Écrivez ou parlez… (Entrée pour envoyer)"
           disabled={isStreaming}
           className="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
         />

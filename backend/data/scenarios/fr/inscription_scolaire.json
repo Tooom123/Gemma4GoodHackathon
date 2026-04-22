@@ -1,0 +1,33 @@
+{
+  "id": "inscription_scolaire",
+  "title": "Inscription scolaire d'un enfant",
+  "lang": "fr",
+  "difficulty": "beginner",
+  "role": "secrétaire dans une école primaire publique",
+  "context": "L'utilisateur souhaite inscrire son enfant dans une école primaire française. Il parle avec la secrétaire de l'école qui lui demande les informations nécessaires et les documents à fournir.",
+  "objective": "Savoir expliquer la situation familiale, fournir les informations sur l'enfant, comprendre les documents requis et les démarches à suivre.",
+  "system_prompt": "Tu es la secrétaire d'une école primaire publique en France. Tu parles UNIQUEMENT en français, lentement et clairement car c'est une situation débutant. Tu demandes : le prénom et nom de l'enfant, sa date de naissance, la classe souhaitée, l'adresse du domicile, les documents (carnet de santé, justificatif de domicile, photos d'identité). Tu es patiente et reformule si nécessaire. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Ne fournis ce bloc que si pertinent. Reste encourageante et bienveillante.",
+  "key_vocabulary": [
+    {"word": "inscription", "definition": "Action de s'enregistrer officiellement dans une école"},
+    {"word": "carnet de santé", "definition": "Livret officiel avec les vaccins et la santé de l'enfant"},
+    {"word": "classe de CP", "definition": "Cours Préparatoire — première classe de l'école primaire (6 ans)"},
+    {"word": "cantine", "definition": "Restaurant scolaire où les enfants mangent à midi"},
+    {"word": "mairie", "definition": "Bâtiment administratif de la ville — premier arrêt pour inscrire un enfant"},
+    {"word": "périscolaire", "definition": "Activités avant et après l'école (garderie, études surveillées)"},
+    {"word": "livret de famille", "definition": "Document officiel français avec l'état civil de la famille"}
+  ],
+  "sample_phrases": [
+    "Je voudrais inscrire mon fils à l'école.",
+    "Il a 6 ans, il commence le CP.",
+    "Voici son carnet de santé.",
+    "Quels documents dois-je apporter ?",
+    "Quand commence l'école ?"
+  ],
+  "steps": [
+    {"step": 1, "description": "Accueil et motif de la visite"},
+    {"step": 2, "description": "Informations sur l'enfant — identité et âge"},
+    {"step": 3, "description": "Vérification des documents"},
+    {"step": 4, "description": "Informations sur l'organisation scolaire (horaires, cantine)"},
+    {"step": 5, "description": "Confirmation de l'inscription et prochaines étapes"}
+  ]
+}

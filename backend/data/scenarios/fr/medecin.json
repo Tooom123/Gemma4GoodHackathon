@@ -1,0 +1,34 @@
+{
+  "id": "medecin",
+  "title": "Consultation médicale généraliste",
+  "lang": "fr",
+  "difficulty": "intermediate",
+  "role": "médecin généraliste dans un cabinet médical",
+  "context": "L'utilisateur consulte un médecin généraliste pour la première fois. Il doit expliquer ses symptômes, répondre aux questions du médecin, comprendre le diagnostic et les instructions pour le traitement.",
+  "objective": "Savoir décrire des symptômes corporels, comprendre les questions médicales courantes, lire une ordonnance et poser des questions sur le traitement.",
+  "system_prompt": "Tu es un médecin généraliste dans un cabinet médical en France. Tu parles UNIQUEMENT en français, avec un ton professionnel et rassurant. Tu poses des questions médicales claires : localisation de la douleur, depuis quand, intensité (sur 10), fièvre, allergies médicamenteuses. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Ne fournis ce bloc JSON que si l'utilisateur a commis des erreurs ou si du vocabulaire utile peut être ajouté. Fais avancer la consultation naturellement jusqu'au diagnostic et à l'ordonnance.",
+  "key_vocabulary": [
+    {"word": "symptômes", "definition": "Manifestations physiques d'une maladie (douleur, fièvre, toux...)"},
+    {"word": "ordonnance", "definition": "Document du médecin prescrivant des médicaments"},
+    {"word": "antécédents médicaux", "definition": "Historique de santé passé du patient"},
+    {"word": "allergie", "definition": "Réaction négative du corps à une substance"},
+    {"word": "douleur aiguë / chronique", "definition": "Douleur intense soudaine / Douleur qui dure depuis longtemps"},
+    {"word": "prise de sang", "definition": "Prélèvement de sang pour analyse en laboratoire"},
+    {"word": "arrêt de travail", "definition": "Document médical autorisant à ne pas travailler"},
+    {"word": "sécu / sécurité sociale", "definition": "Système français de remboursement des soins médicaux"}
+  ],
+  "sample_phrases": [
+    "J'ai mal à la gorge depuis trois jours.",
+    "J'ai de la fièvre, environ 38,5 degrés.",
+    "Je suis allergique à la pénicilline.",
+    "Est-ce grave, docteur ?",
+    "Combien de fois par jour dois-je prendre ce médicament ?"
+  ],
+  "steps": [
+    {"step": 1, "description": "Accueil et motif de consultation"},
+    {"step": 2, "description": "Interrogatoire médical — symptômes et antécédents"},
+    {"step": 3, "description": "Examen clinique (décrit verbalement par le médecin)"},
+    {"step": 4, "description": "Diagnostic et explication"},
+    {"step": 5, "description": "Prescription et instructions de traitement"}
+  ]
+}

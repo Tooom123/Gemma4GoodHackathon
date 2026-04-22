@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import chat, scenarios, progress, tts
+from backend.routers import chat, scenarios, progress, tts, whisper
 
 
 @asynccontextmanager
@@ -30,6 +30,7 @@ app.include_router(chat.router)
 app.include_router(scenarios.router)
 app.include_router(progress.router)
 app.include_router(tts.router)
+app.include_router(whisper.router)
 
 
 @app.get("/")
