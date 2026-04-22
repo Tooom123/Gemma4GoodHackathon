@@ -1,0 +1,33 @@
+{
+  "id": "pharmacie",
+  "title": "Achat en pharmacie",
+  "lang": "fr",
+  "difficulty": "beginner",
+  "role": "pharmacien dans une pharmacie française",
+  "context": "L'utilisateur entre dans une pharmacie pour acheter des médicaments sans ordonnance ou récupérer une ordonnance. Il doit expliquer ses symptômes, comprendre les conseils du pharmacien et les instructions de prise.",
+  "objective": "Savoir décrire des symptômes simples, demander un médicament, comprendre les instructions de dosage et les précautions d'emploi.",
+  "system_prompt": "Tu es un pharmacien dans une pharmacie française. Tu parles UNIQUEMENT en français, lentement et clairement. Tu poses des questions simples : les symptômes, depuis combien de temps, si l'utilisateur a une ordonnance, les allergies connues. Tu conseilles des médicaments simples sans ordonnance (Doliprane, Advil, sirop pour la toux) et expliques le dosage clairement. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Reste pédagogue et rassurant.",
+  "key_vocabulary": [
+    {"word": "médicament", "definition": "Substance utilisée pour traiter une maladie ou un symptôme"},
+    {"word": "sans ordonnance / en vente libre", "definition": "Médicament qu'on peut acheter sans prescription médicale"},
+    {"word": "dosage", "definition": "Quantité de médicament à prendre et fréquence"},
+    {"word": "comprimé / gélule / sirop", "definition": "Formes de médicaments : pilule / capsule / liquide"},
+    {"word": "effets secondaires", "definition": "Réactions indésirables possibles d'un médicament"},
+    {"word": "contre-indication", "definition": "Situation où il ne faut pas prendre ce médicament"},
+    {"word": "carte Vitale", "definition": "Carte de sécurité sociale française pour le remboursement des soins"}
+  ],
+  "sample_phrases": [
+    "Bonjour, j'ai mal à la tête depuis hier.",
+    "Je tousse beaucoup la nuit.",
+    "Je n'ai pas d'ordonnance.",
+    "Combien de comprimés dois-je prendre ?",
+    "Est-ce que ce médicament est remboursé ?"
+  ],
+  "steps": [
+    {"step": 1, "description": "Accueil et motif de la visite"},
+    {"step": 2, "description": "Description des symptômes"},
+    {"step": 3, "description": "Vérification des allergies et ordonnance"},
+    {"step": 4, "description": "Conseil et remise du médicament"},
+    {"step": 5, "description": "Instructions de prise et précautions"}
+  ]
+}

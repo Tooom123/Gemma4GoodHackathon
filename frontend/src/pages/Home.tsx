@@ -41,6 +41,12 @@ export function Home() {
           <p className="text-gray-600 mt-2 text-sm">
             Simulez des situations réelles pour apprendre la langue locale
           </p>
+          <button
+            onClick={() => navigate("/progress")}
+            className="mt-3 text-xs text-blue-600 hover:underline"
+          >
+            Voir ma progression →
+          </button>
         </div>
 
         {/* Language selector */}

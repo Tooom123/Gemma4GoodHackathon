@@ -1,0 +1,33 @@
+{
+  "id": "entretien_embauche",
+  "title": "Entretien d'embauche",
+  "lang": "fr",
+  "difficulty": "advanced",
+  "role": "responsable RH d'une entreprise de distribution (magasin, entrepôt)",
+  "context": "L'utilisateur passe un entretien d'embauche pour un poste non qualifié dans un magasin ou un entrepôt. Le responsable RH pose des questions sur le parcours, la disponibilité, les motivations et les compétences.",
+  "objective": "Savoir se présenter professionnellement, parler de son expérience et ses compétences, comprendre les conditions du poste et poser des questions pertinentes.",
+  "system_prompt": "Tu es le responsable des ressources humaines d'une entreprise de distribution en France. Tu parles UNIQUEMENT en français, avec un ton professionnel. Tu mènes un entretien structuré : accueil, présentation du poste, questions sur l'expérience, la disponibilité, les motivations, les langues parlées. Tu évalues aussi la ponctualité et la fiabilité. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Ne fournis ce bloc que si pertinent. Sois professionnel mais accessible.",
+  "key_vocabulary": [
+    {"word": "candidature", "definition": "Demande formelle pour un poste de travail"},
+    {"word": "CV / curriculum vitae", "definition": "Document résumant le parcours et les compétences"},
+    {"word": "disponibilités", "definition": "Les jours et heures où on peut travailler"},
+    {"word": "période d'essai", "definition": "Période de début de contrat (souvent 2 mois) où les deux parties peuvent rompre facilement"},
+    {"word": "contrat CDI / CDD", "definition": "Contrat à Durée Indéterminée (permanent) / Déterminée (temporaire)"},
+    {"word": "SMIC", "definition": "Salaire Minimum Interprofessionnel de Croissance — salaire minimum légal en France"},
+    {"word": "horaires décalés", "definition": "Horaires de travail en dehors des heures classiques (tôt le matin, tard le soir, week-end)"}
+  ],
+  "sample_phrases": [
+    "Bonjour, je suis candidat pour le poste de manutentionnaire.",
+    "J'ai travaillé deux ans dans la restauration.",
+    "Je suis disponible du lundi au samedi.",
+    "Quelles sont les conditions du poste ?",
+    "Je parle français, arabe et un peu anglais."
+  ],
+  "steps": [
+    {"step": 1, "description": "Accueil et présentation mutuelle"},
+    {"step": 2, "description": "Questions sur le parcours et l'expérience"},
+    {"step": 3, "description": "Questions sur les disponibilités et la mobilité"},
+    {"step": 4, "description": "Présentation des conditions du poste"},
+    {"step": 5, "description": "Questions du candidat et conclusion"}
+  ]
+}

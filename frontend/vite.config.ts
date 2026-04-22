@@ -15,13 +15,37 @@ export default defineConfig({
         theme_color: "#1d4ed8",
         background_color: "#ffffff",
         display: "standalone",
+        start_url: "/",
+        lang: "fr",
         icons: [
           { src: "icon-192.png", sizes: "192x192", type: "image/png" },
-          { src: "icon-512.png", sizes: "512x512", type: "image/png" }
-        ]
+          { src: "icon-512.png", sizes: "512x512", type: "image/png" },
+          { src: "icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+        ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        // Cache all static assets
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2,json}"],
+        // Cache scenarios API responses (stale-while-revalidate)
+        runtimeCaching: [
+          {
+            urlPattern: /^http:\/\/localhost:8000\/scenarios\//,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "scenarios-cache",
+              expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 7 },
+            },
+          },
+          {
+            urlPattern: /^http:\/\/localhost:8000\/progress\//,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "progress-cache",
+              networkTimeoutSeconds: 5,
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 },
+            },
+          },
+        ],
       },
     }),
   ],
@@ -32,6 +56,7 @@ export default defineConfig({
       "/scenarios": "http://localhost:8000",
       "/progress": "http://localhost:8000",
       "/tts": "http://localhost:8000",
+      "/whisper": "http://localhost:8000",
     },
   },
 });

@@ -6,9 +6,9 @@ from backend.routers import chat, scenarios, progress, tts, whisper
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: nothing blocking at this stage
+    from backend.models.database import init_db
+    await init_db()
     yield
-    # Shutdown: clean up resources here in future
 
 
 app = FastAPI(

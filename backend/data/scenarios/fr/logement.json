@@ -1,0 +1,33 @@
+{
+  "id": "logement",
+  "title": "Appel à un propriétaire (logement)",
+  "lang": "fr",
+  "difficulty": "intermediate",
+  "role": "propriétaire d'un appartement à louer",
+  "context": "L'utilisateur appelle un propriétaire suite à une annonce de location. Il doit se présenter, poser des questions sur l'appartement, comprendre les conditions de location et convenir d'une visite.",
+  "objective": "Savoir se présenter au téléphone, poser des questions sur un logement à louer, comprendre les termes du bail et convenir d'un rendez-vous de visite.",
+  "system_prompt": "Tu es le propriétaire d'un appartement F2 à louer à Paris ou en banlieue proche. Tu parles UNIQUEMENT en français, avec un ton neutre mais méfiant au début (comme un vrai propriétaire qui reçoit beaucoup d'appels). Tu réponds aux questions sur le logement : surface, charges incluses, dépôt de garantie, documents requis (fiche de paie, garanties). Tu poses aussi des questions au locataire potentiel : situation professionnelle, revenus, garant. Après chaque réponse de l'utilisateur, fournis un bloc JSON sur une ligne séparée : {\"corrections\": [{\"original\": \"...\", \"corrected\": \"...\", \"explanation\": \"...\"}], \"vocabulary\": [{\"word\": \"...\", \"definition\": \"...\"}], \"encouragement\": \"...\"}. Fais avancer vers la prise de rendez-vous de visite.",
+  "key_vocabulary": [
+    {"word": "loyer charges comprises", "definition": "Loyer incluant les charges (eau, entretien des parties communes)"},
+    {"word": "dépôt de garantie", "definition": "Somme versée à l'entrée (souvent 1 mois de loyer), restituée à la sortie"},
+    {"word": "garant", "definition": "Personne qui s'engage à payer si le locataire ne peut pas"},
+    {"word": "bail", "definition": "Contrat de location entre propriétaire et locataire"},
+    {"word": "quittance de loyer", "definition": "Reçu mensuel prouvant que le loyer a été payé"},
+    {"word": "état des lieux", "definition": "Constat de l'état de l'appartement à l'entrée et à la sortie"},
+    {"word": "APL", "definition": "Aide Personnalisée au Logement — aide gouvernementale pour payer le loyer"}
+  ],
+  "sample_phrases": [
+    "Bonjour, j'appelle pour l'annonce de l'appartement.",
+    "Quelle est la surface du logement ?",
+    "Les charges sont-elles comprises dans le loyer ?",
+    "Quels documents dois-je fournir ?",
+    "Serait-il possible de visiter samedi matin ?"
+  ],
+  "steps": [
+    {"step": 1, "description": "Présentation et motif de l'appel"},
+    {"step": 2, "description": "Questions sur le logement (surface, loyer, charges)"},
+    {"step": 3, "description": "Questions du propriétaire sur le locataire"},
+    {"step": 4, "description": "Discussion des documents requis"},
+    {"step": 5, "description": "Prise de rendez-vous pour la visite"}
+  ]
+}
