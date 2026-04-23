@@ -6,4 +6,3 @@ pydantic-settings==2.7.0
 sqlalchemy==2.0.36
 aiosqlite==0.20.0
 python-multipart==0.0.20
-piper-tts==1.2.0
